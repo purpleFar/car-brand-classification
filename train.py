@@ -1,4 +1,5 @@
 import os
+import argparse
 from imgaug import augmenters as iaa
 import torch
 import torch.nn as nn
@@ -231,9 +232,26 @@ def train_early_stop(
         log["train"]["acc"].append(100.0 * correct / total_data)
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--train_dir",
+        help="the directory of the input images",
+        default="training_data",
+        type=str,
+    )
+    parser.add_argument(
+        "--model_save_dir", help="the directory of models", default="model", type=str
+    )
+    return parser.parse_args()
+
+
 def main():
+    args = parse_args()
+    train_datapath = args.train_dir
+    model_save_path = args.model_save_dir
+
     label = load_obj(os.path.join("preprocess_file", "label"))
-    train_datapath = "training_data"
 
     [train_file, train_labels] = load_data(train_datapath, label, False)
     k_fold_num = 15
@@ -241,8 +259,8 @@ def main():
     train_file = np.array(train_file)
     train_labels = np.array(train_labels)
 
-    if not os.path.exists("model_wide_resnet"):
-        os.makedirs("model_wide_resnet")
+    if not os.path.exists(model_save_path):
+        os.makedirs(model_save_path)
     for i in range(k_fold_num - 1):
         train_f, train_l = np.array([]), np.array([])
         for k in range(k_fold_num):
@@ -279,7 +297,7 @@ def main():
             stepLR,
             n_steps=1000,
             p=6,
-            savefile=os.path.join("model_wide_resnet", "best_model{}.pt".format(i)),
+            savefile=os.path.join(model_save_path, "best_model{}.pt".format(i)),
             show_acc=True,
             return_log=True,
             device=device,
