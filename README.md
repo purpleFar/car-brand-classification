@@ -1,5 +1,5 @@
 # car-brand-classification
-<p align="center">
+<p align="left">
     <a>
         <img src=https://img.shields.io/badge/python-3.6.12-green>
     </a>
