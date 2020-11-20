@@ -40,7 +40,7 @@ $ pip install -r requirements.txt
 ```
 
 ## Download Data
-If the Kaggle API is installed, run following command.
+If the Kaggle API is installed, run following commands.
 
 **Note!** there is no default unzip command in windows 10, you must unzip by GUI.
 ```bash=
@@ -70,7 +70,7 @@ car-brand-classification/
 ```
 
 ## Preprocessing Images
-To train or inference, preprocessing is required. Run following commands.
+To train or inference, preprocessing is required. Run following command.
 ```bash=
 $ python preprocessing.py
 ```
@@ -84,13 +84,13 @@ car-brand-classification/preprocess_file/
 ```
 
 ## Train models
-To train models, run following commands.
+To train models, run following command.
 ```bash=
 $ python train.py --train_dir training_data --model_save_dir model
 ```
 
 ## Pretrained models
-You can download pretrained model that used for my submission from [link](https://drive.google.com/file/d/1fkrZNX9LAD8Ro5DOyG-Qap0MxV9LOLmH/view?usp=sharing). Or run following command.
+You can download pretrained model that used for my submission from [link](https://drive.google.com/file/d/1fkrZNX9LAD8Ro5DOyG-Qap0MxV9LOLmH/view?usp=sharing). Or run following commands.
 
 **Note!** there is no default unzip command in windows 10, you must unzip by GUI.
 ```bash=
